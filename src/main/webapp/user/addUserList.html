@@ -1,0 +1,110 @@
+<form id="pagerForm" method="post" action="user/queryAdminUserBean.htm">
+	<input type="hidden" name="status" value="${param.status}">
+	<input type="hidden" name="keywords" value="${param.keywords}" />
+	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" name="numPerPage" value="${model.numPerPage}" />
+	<input type="hidden" name="orderField" value="${param.orderField}" />
+	<input type="hidden" name="hidUserId" id="hidUserId" value="" />
+</form>
+
+
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" action="user/queryAdminUserBean.htm" method="post">
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				<td>
+					我的客户：<input type="text" name="keyword" />
+				</td>
+				<td>
+					<select class="combox" name="province">
+						<option value="">所有省市</option>
+						<option value="北京">北京</option>
+						<option value="上海">上海</option>
+						<option value="天津">天津</option>
+						<option value="重庆">重庆</option>
+						<option value="广东">广东</option>
+					</select>
+				</td>
+				<td>
+					建档日期：<input type="text" class="date" readonly="true" />
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<!-- <div class="subBar"> -->
+		<div class="">
+		<table style=" width: 100%">
+			<Tr style=" width: 100%">
+			   <td style=" width: 30%"></td>
+			   <td><div class="buttonActive"><div class="buttonContent"><button type="submit">查 &nbsp; &nbsp;询</button></div></div></td>
+			   <td></td>
+			</Tr>
+		</table>
+		</div>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="user/addUser.html" target="dialog" rel="addUserForm" height="400"><span>添加用户</span></a></li>
+			<!-- <li><a class="delete" href="demo/common/ajaxDone.html?uid={sid_user}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="edit" href="demo_page4.html?uid={sid_user}" target="dialog"><span>修改用户</span></a></li>
+			
+			<li class="line">line</li>
+			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
+		 --></ul>
+		<div style="display:none">
+		<a target="dialog" id="editA" href="user/editUser.html" rel="userList" height="400">修改用户信息</a>
+		</div>
+	</div>
+	<table class="table" width="100%" layoutH="148" rel="tbUserList" >
+		<thead>
+			<tr>
+			    <th width="22"><input type="checkbox" group="ids" class="checkboxCtrl"></th>
+				<th width="100" align="center">帐号</th>
+				<th width="70" align="center">姓名</th>
+				<th width="140" align="center">邮箱</th>
+				<th width="80" align="center">手机号码</th>
+				<th width="100" align="center">用户部门</th>
+				<th width="60" align="center">状态</th>
+				<th width="80" align="center">角色类型</th>
+				<th width="120" align="center">添加时间</th>
+				<th width="80" align="center">操作</th>
+			</tr>
+		</thead>
+		<tbody id="tbUserList" name="tbUserList">
+		<!-- 
+			<tr target="sid_user" rel="1">
+			    <td><input name="ids" value="xxx" type="checkbox"></td>
+				<td>天津农信社</td>
+				<td>A120113196309052434</td>
+				<td>天津市华建装饰工程有限公司</td>
+				<td>联社营业部</td>
+				<td>29385739203816293</td>
+				<td>5级</td>
+				<td>政府机构</td>
+				<td>2009-05-21</td>
+			</tr>
+			#{list items:results[0].result, as:'user'}
+			#{/list}
+		 -->
+		</tbody>
+	</table>
+	<div class="panelBar" style="display:none">
+		<div class="pages">
+			<span>显示</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+				<option value="20">20</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+				<option value="200">200</option>
+			</select>
+			<span>条，共${totalCount}条</span>
+		</div>
+		
+		<div class="pagination" targetType="navTab" totalCount="200" numPerPage="20" pageNumShown="10" currentPage="1"></div>
+
+	</div>
+</div>

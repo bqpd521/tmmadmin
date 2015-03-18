@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>教材和教学用图保障与管理系统</title>
+<link href="themes/css/login.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript">
+	
+	    String.prototype.Trim = function(){return this.replace(/(^\s*)|(\s*$)/g,"");}
+	    function loginUser(){
+	    	
+           var userAccount=$("#userAccount").val().Trim();
+           if(userAccount==""){
+        	   
+	   			alert("请输入帐号!");
+				$("#userAccount").focus();
+				return false;        	   
+           }
+           
+           var password1=$("#password1").val().Trim();
+           if(password1==""){
+        	   
+	   			alert("请输入密码!");
+				$("#password1").focus();
+				return false;        	   
+           }
+		  $.post("login.htm",{"userAccount":userAccount,"userPsw":password1},function(data)
+		  {    
+			    if(data.results[0].result=="1"){
+			       
+					window.location.href="index.htm";			       
+			    }else{
+			    	
+			    	alert("登录失败，请重试！~");
+			    }
+		  },"json")
+	    }
+	    
+	    $(function(){
+	    	document.onkeydown = function(e){
+	    	    var ev = document.all ? window.event : e;
+	    	    if(ev.keyCode==13) {
+
+	    	    	loginUser();
+	    	    }
+	    	}
+	    });   
+	</script>
+</head>
+
+<body>
+	<div id="login">
+		<div id="login_header">
+			<h1 class="login_logo">
+				<a href="###"><img src="themes/default/images/login_logo.gif" /></a>
+			</h1>
+			<div class="login_headerContent">
+				<div class="navList">
+					<ul>
+					</ul>
+				</div>
+				<h2 class="login_title"><img src="themes/default/images/login_title.png" /></h2>
+			</div>
+		</div>
+		<div id="login_content">
+			<div class="loginForm">
+				<form action="index.html">
+					<p>
+						<label>用户名：</label>
+						<input type="text" id="userAccount" name="userAccount" class="required" minlength="3" maxlength="50" size="20" class="login_input" value="fengshuang" />
+					</p>
+					<p>
+						<label>密码：</label>
+						<input type="password" id="password1" name="password1" class="required alphanumeric" minlength="6" maxlength="10" size="20" class="login_input" value="123456" />
+					</p>
+					<p style=" display: none">
+						<label>验证码：</label>
+						<input class="code" class="required" type="text" size="5" />
+						<span><img src="themes/default/images/header_bg.png" alt="" width="75" height="24" /></span>
+					</p>
+					<div class="login_bar">
+						<input class="sub" type="button" onclick="loginUser();" value=" " />
+					</div>
+				</form>
+			</div>
+			<div class="login_banner"><img src="themes/default/images/login_banner.jpg" /></div>
+			<div class="login_main">
+				<ul class="helpList" style=" display: block">
+					<li><a href="#">忘记密码怎么办？</a></li>
+					<li><a href="#">为什么登录失败？</a></li>
+				</ul>
+				<div class="login_inner" style=" display: block">
+					<p>您可以使用本系统管理教材</p>
+					<p>您还可以使用本系统管理教学用图</p>
+					<p>你还可以使用本系统，查询，统计，报表....</p>
+				</div>
+			</div>
+		</div>
+		<div id="login_footer">
+			Copyright &copy; 2015 All Rights Reserved.
+		</div>
+	</div>
+</body>
+</html>

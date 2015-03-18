@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+	   	
+	    <!-- 添加缓存相关定时  yinyunfei 2014-10-08  start-->
+	   	<bean id="goodsTeartTask"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- 调用的类 -->
+		<property name="targetObject">
+			<ref bean="goodsTeartTimer" />
+		</property>
+		<!-- 调用类中的方法 -->
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+		</bean>
+		<!-- 定义触发时间 -->
+		<bean id="goodsTeartTime"
+			class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail">
+				<ref bean="goodsTeartTask" />
+			</property><!--  -->
+			<!-- cron表达式 -->
+			<property name="cronExpression">
+			    <!-- 每天早上7点执行 -->
+				<value>00 05 08 * * ? *</value>
+			</property>
+		</bean>
+	   	<!-- 添加缓存相关定时  yinyunfei 2014-10-08  end -->
+
+	    <!-- 添加日志相关定时  yinyunfei 2014-10-08  start-->
+	   	<bean id="userLogTeartTask"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- 调用的类 -->
+		<property name="targetObject">
+			<ref bean="userLogTeartTimer" />
+		</property>
+		<!-- 调用类中的方法 -->
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+		</bean>
+		<!-- 定义触发时间 -->
+		<bean id="userLogTeartTime"
+			class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail">
+				<ref bean="userLogTeartTask" />
+			</property>
+			<!-- cron表达式 -->
+			<property name="cronExpression">
+				<value>0 0/30 * * * ?</value>
+			</property>
+		</bean>
+	   	<!-- 添加用户日志相关定时  yinyunfei 2014-10-08  end -->	   	
+	   	
+	   	<!--添加商品统计相关定时  yinyunfei 2014-10-27  start-->
+	   	<bean id="goodsStatisticsTask"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- 调用的类 -->
+		<property name="targetObject">
+			<ref bean="goodsStatisticsTimer" />
+		</property>
+		<!-- 调用类中的方法 -->
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+		</bean>
+		<!-- 定义触发时间 -->
+		<bean id="goodsStatisticsTime"
+			class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail">
+				<ref bean="goodsStatisticsTask" />
+			</property>
+			<!-- cron表达式 -->
+			<property name="cronExpression">
+				<value>00 52 10 * * ? *</value>
+			</property>
+		</bean>
+	   	<!-- 添加商品统计相关定时  yinyunfei 2014-10-27  end -->	 
+	   	
+	   	<!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序  start-->
+		<bean id="startQuertz" lazy-init="false" autowire="no"
+			class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+			<property name="triggers">
+				<list>
+				<!-- 
+				   <ref bean="goodsTeartTime"/>
+				   <ref bean="userLogTeartTime"/>
+				   <ref bean="goodsStatisticsTime"/> -->
+				</list>
+			</property>
+		</bean>
+		<!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序  end-->
+</beans>
