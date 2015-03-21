@@ -24,6 +24,7 @@
 				<label>所属课程：</label>
 				<c:set var="courseId2" scope="session" value="${bModel.courseId}" />
 				<select id="courseId" name="courseId" class="required combox">
+				<option value="-">-===无===-</option>
 				<c:forEach items="${cList}" var="c">
 					<option <c:if test='${c.id==courseId2 }'>selected="selected"</c:if> value="${c.id}">
 					     <c:choose> 
@@ -34,6 +35,7 @@
 						      <c:out value="${c.courseName}" />
 						     </c:otherwise>
 						 </c:choose>
+						 
 					</option>
 				</c:forEach>
 				</select>

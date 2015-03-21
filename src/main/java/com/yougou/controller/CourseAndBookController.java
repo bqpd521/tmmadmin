@@ -258,6 +258,25 @@ public class CourseAndBookController {
 	}
 	
 	/**
+	 * 方法说明：分页查询Book信息
+	 * 创建时间：2015年3月20 长春  Yin yunfei
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@SuppressWarnings("unused")
+	@RequestMapping(value = "book/bookList2")  
+	@ResponseBody 
+	private ModelAndView bookList2(HttpServletRequest request,HttpServletResponse response) {
+		
+		PageBean<BooksInfoModel> pb=courserAndBookServer.queryBookInfoPageBean(request, response);
+		request.setAttribute("list2", pb);
+		
+		return new ModelAndView("book/bookList2");
+	}
+	
+	
+	/**
 	 * 方法说明：保障计划列表
 	 * 创建时间：2014年12月10日 下午2:43:22  Yin yunfei
 	 * @param request
@@ -462,6 +481,15 @@ public class CourseAndBookController {
 		request.setAttribute("bModel", bl);
 		
 		String cfrom=request.getParameter("cfrom");
+		
+		if("1".equals(cfrom)){
+			
+			request.setAttribute("jsMenth", "navTabAjaxDoneBook2");
+		} else if("2".equals(cfrom)){
+			
+			request.setAttribute("jsMenth", "navTabAjaxDoneBook3");
+		}
+		
 		request.setAttribute("cfrom", cfrom);
 		
 		return new ModelAndView("book/tiaoBook");
@@ -483,6 +511,15 @@ public class CourseAndBookController {
 		request.setAttribute("bModel", bl);
 		
 		String cfrom=request.getParameter("cfrom");
+		
+		if("1".equals(cfrom)){
+			
+			request.setAttribute("jsMenth", "navTabAjaxDoneBook2");
+		} else if("2".equals(cfrom)){
+			
+			request.setAttribute("jsMenth", "navTabAjaxDoneBook3");
+		}
+		
 		request.setAttribute("cfrom", cfrom);
 		
 		return new ModelAndView("book/ruBook");
@@ -504,6 +541,15 @@ public class CourseAndBookController {
 		request.setAttribute("bModel", bl);
 		
 		String cfrom=request.getParameter("cfrom");
+		
+		if("1".equals(cfrom)){
+			
+			request.setAttribute("jsMenth", "navTabAjaxDoneBook2");
+		} else if("2".equals(cfrom)){
+			
+			request.setAttribute("jsMenth", "navTabAjaxDoneBook3");
+		}
+		
 		request.setAttribute("cfrom", cfrom);
 		
 		return new ModelAndView("book/chuBook");

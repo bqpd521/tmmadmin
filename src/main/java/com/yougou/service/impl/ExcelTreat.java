@@ -112,7 +112,7 @@ public class ExcelTreat {
 		
 		
 		try {
-			String[] title = { "教材或图名称", "主编", "出版社", "出版时间（版次）", "来源", "数量" };
+			String[] title = { "教材或图名称", "主编", "出版社", "出版时间（版次）", "来源", "缺货数量","库存数量","使用数量" };
 			// 获得开始时间
 			long start = System.currentTimeMillis();
 			// 输出的excel的路径
@@ -150,10 +150,16 @@ public class ExcelTreat {
 					sheet.setColumnView(i, 	15);
 				}else if(i==4){
 					
-					sheet.setColumnView(i, 	10);
+					sheet.setColumnView(i, 	15);
 				}else if(i==5){
 					
-					sheet.setColumnView(i, 	10);
+					sheet.setColumnView(i, 	15);
+				}else if(i==6){
+					
+					sheet.setColumnView(i, 	15);
+				}else if(i==7){
+					
+					sheet.setColumnView(i, 	15);
 				}
 				
 			}
@@ -229,6 +235,13 @@ public class ExcelTreat {
 					
 					label = new Label(5, i, iQueCount+"");
 					sheet.addCell(label);
+					
+					label = new Label(6, i, iKcCount+"");
+					sheet.addCell(label);
+					
+					label = new Label(7, i, iUserCount+"");
+					sheet.addCell(label);
+					
 					i++;
 				}
 			}

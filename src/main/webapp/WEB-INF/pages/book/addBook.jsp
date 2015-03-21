@@ -20,6 +20,7 @@
 			<p>
 				<label>所属课程：</label>
 				<select style="width:50px" id="courseId" name="courseId" class="required combox">
+				<option value="-">-===无===-</option>
 				<c:forEach items="${cList}" var="c">
 					<option value="${c.id}">
 						<c:choose> 

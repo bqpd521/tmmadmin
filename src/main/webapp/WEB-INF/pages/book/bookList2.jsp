@@ -9,16 +9,16 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/";
 %>
-<form id="pagerForm" method="post" action="book/bookList.htm">
+<form id="pagerForm" method="post" action="book/bookList2.htm">
 	<input type="hidden" name="status" value="">
 	<input type="hidden" name="keywords" value="" />
-	<input type="hidden" id="pageNum0"  name="pageNum0" value="${list2.pageNow}" />
-	<input type="hidden" id="pageNum"  name="pageNum" value="${list2.pageNow}" />
+	<input type="hidden" id="pageNum" name="pageNum" value="${list2.pageNow}" />
+	<input type="hidden" id="pageNum2" name="pageNum2" value="${list2.pageNow}" />
 	<input type="hidden" name="numPerPage" value="${list2.pageSize}" />
 	<input type="hidden" name="orderField" value="" />
 </form>
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="book/bookList.htm" method="post">
+	<form onsubmit="return navTabSearch(this);" action="book/bookList2.htm" method="post">
 	<div class="searchBar">
 		<!--<ul class="searchContent">
 			<li>
@@ -84,16 +84,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="book/addBookView.htm" target="dialog" rel="addBookForm" height="580"><span>添加教材</span></a></li>
+			<li>
+			<!-- 
+			<a class="add" href="book/addBookView.htm" target="dialog" rel="addBookForm" height="580"><span>添加教材</span></a></li> -->
 			<!--  
 			<li><a class="delete" href="book/deleteBook.htm?bookId={sid_book}" target="ajaxTodo" callback="navTabAjaxDoneBookDelete" title="确定要删除吗?"><span>删除</span></a></li>
 			-->
-			<li><a id="aDellBookAll" class="delete" onclick="getCheckBoxValuesBook();"  title="确定要删除吗?"><span>删除</span></a></li>
+			<!--  
+			<li><a id="aDellBookAll" class="delete" onclick="getCheckBoxValuesBook();"  title="确定要删除吗?"><span>删除bat</span></a></li>
 			<li><a class="edit" href="book/editBookView.htm?bookId={sid_book}" target="dialog" rel="editBookForm" height="580"><span>修改教材</span></a></li>
-			<!-- 
-			<li><a class="edit" href="book/ruBookView.htm?cfrom=1&bookId={sid_book}" target="dialog" rel="ruBookForm" height="250"><span>入库</span></a></li>
+			--><li><a class="edit" href="book/ruBookView.htm?cfrom=1&bookId={sid_book}" target="dialog" rel="ruBookForm" height="250"><span>入库</span></a></li>
 			<li><a class="edit" href="book/tiaoBookView.htm?cfrom=1&bookId={sid_book}" target="dialog" rel="tiaoBookForm" height="250"><span>调库</span></a></li>
-			<li><a class="edit" href="book/chuBookView.htm?cfrom=1&bookId={sid_book}" target="dialog" rel="chuBookForm" height="250"><span>出库</span></a></li> -->
+			<li><a class="edit" href="book/chuBookView.htm?cfrom=1&bookId={sid_book}" target="dialog" rel="chuBookForm" height="250"><span>出库</span></a></li>
 			<li><a id="aExprot2" class="icon" onclick="exportExcelBooList('${bookName}','${bookAuthor}','${bigType}','<%=basePath%>');" href="###" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
 		</ul>
 	</div>

@@ -7,7 +7,7 @@
 <form id="pagerForm" method="post" action="book/sendList.htm">
 	<input type="hidden" name="status" value="">
 	<input type="hidden" name="keywords" value="" />
-	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" id="pageNum" name="pageNum" value="${list2.pageNow}" />
 	<input type="hidden" name="numPerPage" value="${list2.pageSize}" />
 	<input type="hidden" name="orderField" value="" />
 </form>

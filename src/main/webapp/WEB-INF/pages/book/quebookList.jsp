@@ -8,7 +8,8 @@
 <form id="pagerForm" method="post" action="book/quebookList.htm">
 	<input type="hidden" name="status" value="">
 	<input type="hidden" name="keywords" value="" />
-	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" id="pageNum"  name="pageNum" value="${list2.pageNow}" />
+	<input type="hidden" id="pageNum3"  name="pageNum3" value="${list2.pageNow}" />
 	<input type="hidden" name="numPerPage" value="${list2.pageSize}" />
 	<input type="hidden" name="orderField" value="" />
 </form>
@@ -39,28 +40,33 @@
 			    <td style=" width:10%">
 			    </td>
 				<td>
-					教材名称：<input type="text" name="bookName" maxlength="30"  />
+					教材名称：<input type="text" name="bookName" maxlength="30"  value="${bookName}" />
 				</td>
 				<td>
-					作者：<input type="text" name="bookAuthor" maxlength="30"  />
+					作者：<input type="text" name="bookAuthor" maxlength="30" value="${bookAuthor}" />
 				</td>
 				<td align="right">大类：</td>
 				<td align="left">
 					<select id="bigType" name="bigType" class="required combox">
 					<option value="">请选择</option>
-					<option value="1">外购</option>
-					<option value="2">印刷</option>
-					<option value="3">配发</option>
-					<option value="4">调拨</option>
-					<option value="5">其它</option>					
+				    <option <c:if test='${bigType=="1"}'>selected="selected"</c:if> value="1">外购</option>
+					<option <c:if test='${bigType=="2"}'>selected="selected"</c:if> value="2">印刷</option>
+					<option <c:if test='${bigType=="3"}'>selected="selected"</c:if> value="3">配发</option>
+					<option <c:if test='${bigType=="4"}'>selected="selected"</c:if> value="4">调拨</option>
 				</select>
 				</td>		
-				<td align="right">状态：</td>
+				<td align="right">库存数量：</td>
 				<td align="left">
-					<select id="bookState" name="bookState" class="required combox">
+					<select id="kcCount" name="kcCount" class="required combox">
 					    <option value="">请选择 </option>
-						<option value="1">可用 </option>
-						<option value="0">停用</option>
+						<option value="5">库存小于等于5 </option>
+						<option value="10">库存小于等于10 </option>
+						<option value="15">库存小于等于15 </option>
+						<option value="20">库存小于等于20 </option>
+						<option value="25">库存小于等于25 </option>
+						<option value="30">库存小于等于30 </option>
+						<option value="35">库存小于等于35 </option>
+						<option value="40">库存小于等于40 </option>
 					</select>
 				</td>							
 			</tr>
@@ -130,8 +136,14 @@
 				<td>${c.chengHao}</td>		
 				<td>${c.kcCount}</td>
 				<td <c:if test='${c.queCount == "-1" }'>style="color:blue"</c:if><c:if test='${c.queCount != "-1" }'>style="color:red"</c:if> >
-				<c:if test='${c.queCount == "-1" }'>不缺</c:if>
-				<c:if test='${c.queCount != "-1" }'>${c.queCount}</c:if>
+				<c:if test='${c.kcCount <= 5 }'>
+					<c:if test='${c.queCount == "-1" }'><span style="color:red">预警</span></c:if>
+					<c:if test='${c.queCount != "-1" }'>${c.queCount}</c:if>				
+				</c:if>
+				<c:if test='${c.kcCount > 5 }'>
+					<c:if test='${c.queCount == "-1" }'>不缺</c:if>
+					<c:if test='${c.queCount != "-1" }'>${c.queCount}</c:if>				
+				</c:if>
 				</td>														
 			</tr>		
 			</c:forEach>	

@@ -6,7 +6,7 @@
 <%@ page isELIgnored="false" %>
 
 <div class="pageContent" id="chuBookForm">
-	<form id="chuBookForm2" method="post" action="book/addBookSend.htm" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDoneBook)">
+	<form id="chuBookForm2" method="post" action="book/addBookSend.htm" class="pageForm required-validate" onsubmit="return validateCallback(this, ${jsMenth})">
 		<div class="pageFormContent" layoutH="56">
 		<input type="hidden" name="bookId" id="bookId" value="${bModel.id}" />
 		<input type="hidden" name="sendFlag" id="sendFlag" value="chu" />
@@ -26,7 +26,7 @@
 			</p>	
 			<p>
 				<label>领取数量：</label>
-				<input id="sendCount" maxlength="3" onMouseOut="sumbitChu();" class="required number" name="sendCount" type="text" size="30" value="" />注意库存
+				<input id="sendCount" maxlength="3" onMouseOut="sumbitChu('${bModel.kcCount}');" class="required number" name="sendCount" type="text" size="30" value="" />注意库存
 			</p>	
 			<p>
 				<label>发放类型：</label>
@@ -52,10 +52,11 @@
 	</form>
 	<script>
 	    
-	     function sumbitChu(){
+	     function sumbitChu(kcCountTemp){
 	    	 
 	 		
-	 		var kcCount=$("#kcCount").val();
+	 		var kcCount=kcCountTemp;//$("#kcCount").val();
+	 		//alert("kc:"+kcCount);
 			var sendCount=$("#sendCount").val();
 			
 			if(sendCount==""){

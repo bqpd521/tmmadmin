@@ -7,7 +7,8 @@
 <form id="pagerForm" method="post" action="course/courseList.htm">
 	<input type="hidden" name="status" value="">
 	<input type="hidden" name="keywords" value="" />
-	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" id="pageNum"  name="pageNum" value="${list.pageNow}" />
+	<input type="hidden" id="pageNumCourse"  name="pageNumCourse" value="${list.pageNow}" />
 	<input type="hidden" name="numPerPage" value="${list.pageSize}" />
 	<input type="hidden" name="orderField" value="" />
 </form>
@@ -62,7 +63,7 @@
 			<!--<li><a class="delete" href="course/deleteCourse.htm?courseId={sid_course}" target="ajaxTodo" callback="navTabAjaxDoneCourseDelete" title="确定要删除吗?"><span>删除</span></a></li>  
 			<li><a id="aAllUrl" onclick="getCheckBoxValues();" class="add" rel="sendAllForm" height="550"><span>批量发放</span></a></li>
 			-->
-			<li><a id="aDellAll" class="delete" onclick="getCheckBoxValuesCourse();"  title="确定要删除吗?"><span>删除bat</span></a></li>
+			<li><a id="aDellAll" class="delete" onclick="getCheckBoxValuesCourse();"  title="确定要删除吗?"><span>删除</span></a></li>
 			<li><a class="edit" href="course/editCourseView.htm?courseId={sid_course}" target="dialog" rel="editCourseForm" height="220"><span>修改课程</span></a></li>
 		</ul>
 	</div>

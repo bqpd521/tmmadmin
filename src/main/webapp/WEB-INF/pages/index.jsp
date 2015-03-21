@@ -129,7 +129,7 @@ $(function(){
 				</div>
 			</div>
 			<div id="sidebar">
-				<div class="toggleCollapse"><h2>系统主菜单</h2><div>收缩</div></div>
+				<div class="toggleCollapse"><h2>教材和教学用图保障与管理系统</h2><div>收缩</div></div>
 
 				<div class="accordion" fillSpace="sidebar">
 					<div class="accordionHeader">
@@ -137,12 +137,12 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a href="ensure/ensureList.htm" target="navTab" rel="ensureList">上传EXCEL</a></li>
-							<li><a href="ensure/uploadList.htm" target="navTab" rel="uploadList">上传记录</a></li>
-							<li><a href="ensure/useList.htm" target="navTab" rel="userList">使用计划</a></li>
-							<li><a href="ensure/bzjhList.htm" target="navTab" rel="bzjhList">保障计划</a></li>
+							<li><a href="ensure/ensureList.htm" target="navTab" rel="ensureList">上传教材使用计划</a></li>
+							<li><a href="ensure/bzjhList.htm" target="navTab" rel="bzjhList">生成教材保障计划</a></li>
+							<li><a href="ensure/useList.htm" target="navTab" rel="userList">生成学员使用计划</a></li>
 							<li><a href="ensure/nowSendList.htm" target="navTab" rel="nowSendList">当期发放单</a></li>
 							<li><a href="ensure/hiSendList.htm" target="navTab" rel="hiSendList">历史发放单</a></li>
+							<li><a href="ensure/uploadList.htm" target="navTab" rel="uploadList">上传记录</a></li>
 						</ul>
 					</div>
 					<div class="accordionHeader">
@@ -151,7 +151,8 @@ $(function(){
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
 							<li><a href="course/courseList.htm" target="navTab" rel="courseList">课程信息</a></li>
-							<li><a href="book/bookList.htm" target="navTab" rel="bookList">库存明细</a></li>
+							<li><a href="book/bookList.htm" target="navTab" rel="bookList">教材信息</a></li>
+							<li><a href="book/bookList2.htm" target="navTab" rel="bookList2">库存明细</a></li>
 							<li><a href="book/quebookList.htm" target="navTab" rel="quebookList">缺库统计</a></li>
 							<li><a href="book/sendList.htm" target="navTab" rel="sendList">去向统计</a></li>
 							<li><a href="book/huishouList.htm" target="navTab" rel="huishouList">回收统计</a></li>

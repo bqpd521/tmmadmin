@@ -598,7 +598,20 @@ public class CourserAndBookServerImpl implements CourserAndBookServer {
 			
 			if("ru".equals(sendFlag)){
 				
-				bi.setKcCount(kcCount);
+				String oldKCount=bi.getKcCount();
+				int iOldKCount=0;
+				if(oldKCount!=null&&!"".equals(oldKCount)){
+					
+					iOldKCount=Integer.parseInt(oldKCount);
+				}
+				
+				int iNewKCount=0;
+				if(kcCount!=null&&!"".equals(kcCount)){
+					
+					iNewKCount=Integer.parseInt(kcCount);
+				}
+				
+				bi.setKcCount((iOldKCount+iNewKCount)+"");
 				addOrEdit="4";
 				//添加日志
 			}else if("tiao".equals(sendFlag)){
@@ -666,7 +679,7 @@ public class CourserAndBookServerImpl implements CourserAndBookServer {
 			pageBean.setPageSize(iPageSize);
 			pageBean.setPageNow(iPageNow);
 			
-			PageBean<BooksInfoModel> pb = booksInfoDao.queryBooksInfoPageBean(pageBean, bookName, bookAuthor, bigType, bookState,"1");
+			PageBean<BooksInfoModel> pb = booksInfoDao.queryBooksInfoPageBean(pageBean, bookName, bookAuthor, bigType, bookState,"1","");
 			
 			if(pb!=null&&pb.getResult().size()>0){
 				
@@ -707,6 +720,11 @@ public class CourserAndBookServerImpl implements CourserAndBookServer {
 			String bookAuthor=request.getParameter("bookAuthor");
 			String bigType=request.getParameter("bigType");
 			String bookState=request.getParameter("bookState");
+			String kcCount0=request.getParameter("kcCount");
+			
+			request.setAttribute("bookName", bookName);
+			request.setAttribute("bookAuthor", bookAuthor);
+			request.setAttribute("bigType", bigType);
 			
             int iPageSize=15;
             
@@ -726,7 +744,7 @@ public class CourserAndBookServerImpl implements CourserAndBookServer {
 			pageBean.setPageSize(iPageSize);
 			pageBean.setPageNow(iPageNow);
 			
-			PageBean<BooksInfoModel> pb = booksInfoDao.queryBooksInfoPageBean(pageBean, bookName, bookAuthor, bigType, bookState,"2");
+			PageBean<BooksInfoModel> pb = booksInfoDao.queryBooksInfoPageBean(pageBean, bookName, bookAuthor, bigType, bookState,"2",kcCount0);
 			//pb=this.getCourseIdChangeName(pb);
 			
 			

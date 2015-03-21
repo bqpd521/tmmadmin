@@ -268,7 +268,8 @@ function callbackMethEdit(){
 }
 
 function navTabAjaxDone2(json){
-	var forwardurl ="user/userList2.htm";
+	var pageNum=document.getElementById("pageNum").value;
+	var forwardurl ="user/userList2.htm?pageNum="+pageNum;
 	forwardurl = forwardurl;
 	if (json.statusCode == 200) {
 	       alertMsg.correct(json.message);
@@ -310,7 +311,8 @@ function navTabAjaxChangePsw(json){
 
 //添加成功后的提示并刷新列表
 function navTabAjaxDone3(json){
-	var forwardurl ="user/userList2.htm";
+	var pageNum=document.getElementById("pageNum").value;
+	var forwardurl ="user/userList2.htm?pageNum="+pageNum;
 	forwardurl = forwardurl;
 	if (json.statusCode == 200) {
 	       alertMsg.correct(json.message);
@@ -323,8 +325,8 @@ function navTabAjaxDone3(json){
 
 //用户删除提示
 function dialogAjaxDoneThis(json){
-
-	var forwardurl ="user/userList2.htm";
+	var pageNum=document.getElementById("pageNum").value;
+	var forwardurl ="user/userList2.htm?pageNum="+pageNum;
 	forwardurl = forwardurl;
 	if (json.statusCode == 200) {
 	       alertMsg.correct(json.message);
@@ -338,7 +340,9 @@ function dialogAjaxDoneThis(json){
 
 //课程添加成功回调  
 function navTabAjaxDoneCourse(json){
-	var forwardurl ="course/courseList.htm";
+	
+	var pageNum=document.getElementById("pageNumCourse").value;
+	var forwardurl ="course/courseList.htm?pageNum="+pageNum;
 	forwardurl = forwardurl;
 	if (json.statusCode == 200) {
 	       alertMsg.correct(json.message);
@@ -394,13 +398,114 @@ function navTabAjaxDoneUploadDelete(json){
 
 //教材添加成功回调  
 function navTabAjaxDoneBook(json){
-	var forwardurl ="book/bookList.htm";
+	
+	var pageNum=document.getElementById("pageNum0").value;
+	//alert("pageNum:"+pageNum);
+	var forwardurl ="book/bookList.htm?pageNum="+pageNum;
 	//forwardurl = forwardurl;
 	
 	//alert("json.cfrom:"+json.cfrom);
 	if(json.cfrom=="2"){
 		
-		forwardurl ="book/quebookList.htm";
+		forwardurl ="book/quebookList.htm?pageNum="+pageNum;
+	}
+	
+	if (json.statusCode == 200) {
+	       alertMsg.correct(json.message);
+	}
+	if (json.statusCode == 300) {
+	       alertMsg.error(json.message);
+	}
+	
+	//教材名称重复
+	if (json.statusCode == 400) {
+	       alertMsg.warn(json.message);
+	       return null;
+	}
+	
+	if (json.addOrEdit == "1") {
+		
+		//alert("addOrEdit："+json.addOrEdit);
+		$.pdialog.close("addBookForm");
+	}else  if (json.addOrEdit == "0"){
+		
+		//alert("addOrEdit："+json.addOrEdit);
+		$.pdialog.close("editBookForm");
+	}else if (json.addOrEdit == "3"){
+		
+		//alert("addOrEdit："+json.addOrEdit);
+		$.pdialog.close("chuBookForm");
+	}else if (json.addOrEdit == "4"){
+		
+		//alert("addOrEdit："+json.addOrEdit);
+		$.pdialog.close("ruBookForm");
+	}else if (json.addOrEdit == "5"){
+		
+		//alert("addOrEdit："+json.addOrEdit);
+		$.pdialog.close("tiaoBookForm");
+	}
+	
+	navTab.reload(forwardurl, "", json.navTabId);
+}
+
+//管理功能--库存明细
+function navTabAjaxDoneBook2(json){
+	var forwardurl ="book/bookList2.htm";
+	//forwardurl = forwardurl;
+	var pageNum=document.getElementById("pageNum2").value;
+	//alert("pageNum2:"+pageNum);
+	if(json.cfrom=="2"){
+		
+		forwardurl ="book/quebookList.htm?pageNum="+pageNum;
+	}
+	
+	if (json.statusCode == 200) {
+	       alertMsg.correct(json.message);
+	}
+	if (json.statusCode == 300) {
+	       alertMsg.error(json.message);
+	}
+	
+	//教材名称重复
+	if (json.statusCode == 400) {
+	       alertMsg.warn(json.message);
+	       return null;
+	}
+	
+	if (json.addOrEdit == "1") {
+		
+		//alert("addOrEdit："+json.addOrEdit);
+		$.pdialog.close("addBookForm");
+	}else  if (json.addOrEdit == "0"){
+		
+		//alert("addOrEdit："+json.addOrEdit);
+		$.pdialog.close("editBookForm");
+	}else if (json.addOrEdit == "3"){
+		
+		//alert("addOrEdit："+json.addOrEdit);
+		$.pdialog.close("chuBookForm");
+	}else if (json.addOrEdit == "4"){
+		
+		//alert("addOrEdit："+json.addOrEdit);
+		$.pdialog.close("ruBookForm");
+	}else if (json.addOrEdit == "5"){
+		
+		//alert("addOrEdit："+json.addOrEdit);
+		$.pdialog.close("tiaoBookForm");
+	}
+	
+	navTab.reload(forwardurl, "", json.navTabId);
+}
+
+//管理功能--缺库统计
+function navTabAjaxDoneBook3(json){
+	var forwardurl ="book/bookList2.htm";
+	//forwardurl = forwardurl;
+	var pageNum=document.getElementById("pageNum3").value;
+	//alert("pageNum2:"+pageNum);
+	if(json.cfrom=="2"){
+		
+		forwardurl ="book/quebookList.htm?pageNum="+pageNum;
 	}
 	
 	if (json.statusCode == 200) {
@@ -522,7 +627,9 @@ function navTabAjaxDoneBookUpload(json){
 
 //添加 使用班级
 function navTabAjaxDoneBookAddUseClass(json){
-	var forwardurl ="ensure/useList.htm";
+	
+	var pageNum=document.getElementById("pageNum").value;
+	var forwardurl ="ensure/useList.htm?pageNum="+pageNum;
 	forwardurl = forwardurl;
 	if (json.statusCode == 200) {
 		    alertMsg.correct(json.message);
@@ -536,7 +643,9 @@ function navTabAjaxDoneBookAddUseClass(json){
 
 //教材销毁回调  
 function navTabAjaxDoneBookXiaoHui(json){
-	var forwardurl ="book/huishouList.htm";
+	
+	var pageNum=document.getElementById("pageNum").value;
+	var forwardurl ="book/huishouList.htm?pageNum="+pageNum;
 	forwardurl = forwardurl;
 	if (json.statusCode == 200) {
 	       alertMsg.correct(json.message);

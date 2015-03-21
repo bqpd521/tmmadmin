@@ -6,7 +6,7 @@
 <%@ page isELIgnored="false" %>
 
 <div class="pageContent" id="tiaoBookForm">
-	<form method="post" action="book/addBook2.htm" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDoneBook)">
+	<form method="post" action="book/addBook2.htm" class="pageForm required-validate" onsubmit="return validateCallback(this, ${jsMenth})">
 		<div class="pageFormContent" layoutH="56">
 			<input type="hidden" name="bookId" id="bookId" value="${bModel.id}" />
 		    <input type="hidden" name="sendFlag" id="sendFlag" value="tiao" />

@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <form id="pagerForm" method="post" action="ensure/uploadList.htm">
 	<input type="hidden" name="status" value="">
 	<input type="hidden" name="keywords" value="" />
-	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" id="pageNum" name="pageNum" value="${list2.pageNow}" />
 	<input type="hidden" name="numPerPage" value="${list2.pageSize}" />
 	<input type="hidden" name="orderField" value="" />
 </form>
@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="panelBar">
 		<ul class="toolBar">
 			<li><a class="delete" href="ensure/uploadState.htm?uploadId={sid_book}" target="ajaxTodo" callback="navTabAjaxDoneBookUpload" title="确定要修改处理状态吗?"><span>修改处理状态</span></a></li>
-			<li><a id="aDellAll2" class="delete" onclick="getCheckBoxValuesUpload();"  title="确定要删除吗?"><span>删除bat</span></a></li>
+			<li><a id="aDellAll2" class="delete" onclick="getCheckBoxValuesUpload();"  title="确定要删除吗?"><span>删除</span></a></li>
 		</ul>
 	</div>
 	<table class="table" width="100%" layoutH="148" rel="uploadList">

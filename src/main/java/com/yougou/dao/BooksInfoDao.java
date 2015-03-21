@@ -34,7 +34,7 @@ public class BooksInfoDao extends  HibernateBaseDao<BooksInfoModel>{
 	 * @return
 	 * @throws Exception
 	 */
-	public PageBean<BooksInfoModel> queryBooksInfoPageBean(PageBean<BooksInfoModel> pageBean,String bookName,String bookAuthor,String bigType,String bookState,String orderType) throws Exception{
+	public PageBean<BooksInfoModel> queryBooksInfoPageBean(PageBean<BooksInfoModel> pageBean,String bookName,String bookAuthor,String bigType,String bookState,String orderType,String kcCount) throws Exception{
 		
 			
 		if(pageBean!=null){
@@ -62,6 +62,12 @@ public class BooksInfoDao extends  HibernateBaseDao<BooksInfoModel>{
 				//String hql2 = "FROM Table AS t WHERE t.field like '%" + str + "%'";
 				hql += " and T.bookState=:bookState";
 				map.put("bookState", bookState);
+			}
+			
+			if(kcCount!=null&&!"".equals(kcCount)){
+				//String hql2 = "FROM Table AS t WHERE t.field like '%" + str + "%'";
+				hql += " and T.kcCount<=:kcCount";
+				map.put("kcCount", kcCount);
 			}
 			
 			if("1".equals(orderType)){
